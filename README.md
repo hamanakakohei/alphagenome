@@ -8,6 +8,18 @@ To do:
 -- Y軸にRef/Altハプロタイプのスコアを水平ダッシュ線で参照として示しつつ、
 -- 上の図と全く同じようにする
 
+ontology_curieの値を1つ与えて、以下について全てのトラックを表示する
+rna_seq
+cage
+procap
+atac
+dnase
+chip_histone
+splice_sites
+splice_site_usage
+splice_junctions
+出来れば実験データをダウンロードして並べて示す
+
 各モダリティのデータ（トラック）が、細胞種（ontology_curie列）で一意に決まるか？
 - atac：各ontology_curieに一つだけ
 
@@ -31,7 +43,7 @@ To do:
 | Assay title | data\_source | endedness | genetically\_modified | strand | count |
 | ----------- | ------------ | --------- | --------------------- | ------ | ----- |
 | DNase-seq   | encode       | paired    | False                 | .      | 197   |
-| DNase-seq   | encode       | single    | False                 | l      | 108   |
+| DNase-seq   | encode       | single    | False                 | .      | 108   |
 
 
 - rna_seq：各ontology_curieに多くのデータがある
