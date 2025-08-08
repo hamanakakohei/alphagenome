@@ -10,6 +10,7 @@ To do:
 
 各モダリティのデータ（トラック）が、細胞種（ontology_curie列）で一意に決まるか？
 - atac：各ontology_curieに一つだけ
+
 | Assay title | data\_source | endedness | genetically\_modified | strand | count |
 | ----------- | ------------ | --------- | --------------------- | ------ | ----- |
 | ATAC-seq    | encode       | paired    | False                 | .      | 166   |
