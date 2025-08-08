@@ -10,9 +10,10 @@ To do:
 
 各モダリティのデータ（トラック）が、細胞種（ontology_curie列）で一意に決まるか？
 - atac：各ontology_curieに一つだけ
-Assay title  data_source  endedness  genetically_modified  strand
-ATAC-seq     encode       paired     False                 .       166
-                          single     False                         1
+| Assay title | data\_source | endedness | genetically\_modified | strand | count |
+| ----------- | ------------ | --------- | --------------------- | ------ | ----- |
+| ATAC-seq    | encode       | paired    | False                 | .      | 166   |
+| ATAC-seq    | encode       | single    | False                 | .      | 1     |
 
 - cage：ontology_curieにによってはLQhCAGEとhCAGEの両方ある
 Assay title  data_source  strand
