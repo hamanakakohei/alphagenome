@@ -9,24 +9,24 @@ To do:
 -- 上の図と全く同じようにする
 
 各モダリティのデータ（トラック）が、細胞種（ontology_curie列）で一意に決まるか？
-- atac：一つだけ
+- atac：各ontology_curieに一つだけ
 Assay title  data_source  endedness  genetically_modified  strand
 ATAC-seq     encode       paired     False                 .       166
                           single     False                         1
 
-- cage：全データにおいて両ストランドあるのと、細胞種によってはLQhCAGEとhCAGEの両方ある
+- cage：ontology_curieにによってはLQhCAGEとhCAGEの両方ある
+Assay title  data_source  strand
+hCAGE        fantom       +       258
+hCAGE        fantom       -       258
+LQhCAGE      fantom       +        15
+LQhCAGE      fantom       -        15
   
-strand  Assay title  data_source
-+       hCAGE        fantom         258
--       hCAGE        fantom         258
-+       LQhCAGE      fantom          15
--       LQhCAGE      fantom          15
+- dnase：各ontology_curieに一つだけ
+Assay title  data_source  endedness  genetically_modified  strand
+DNase-seq    encode       paired     False                 .       197
+                          single     False                 l       108
   
-- dnase：一つだけ
-strand  Assay title  data_source  endedness  genetically_modified
-.       DNase-seq    encode       paired     False                   197
-                                  single     False                   108
-- rna_seq：各細胞種に多くのデータがある
+- rna_seq：各ontology_curieに多くのデータがある
 strand  Assay title         data_source  endedness  genetically_modified
 +       total RNA-seq       encode       paired     False                   135
 -       total RNA-seq       encode       paired     False                   135
@@ -39,17 +39,17 @@ strand  Assay title         data_source  endedness  genetically_modified
                                          paired     False                    31
         total RNA-seq       encode       paired     False                     2
         
-- chip_histone：ontology_curie x histone_markペアなら1データずつしかないが、ontology_curieによってhistone_mark数は様々
+- chip_histone：ontology_curie x histone_markペアに1つずつデータがある
 strand  Assay title       data_source  endedness  genetically_modified
 .       Histone ChIP-seq  encode       single     False                   1046
                                        paired     False                     70
 
-- chip_tf：genetically_modified==Falseならontology_curie x transcription_factorで一つに決まる（SEやPEがあるが、両方はない）。genetically_modifiedは色んな種類があり、name列見分ける？
-strand  Assay title  data_source  endedness  genetically_modified
-.       TF ChIP-seq  encode       single     False                   595
-                                             True                    559
-                                  paired     False                   288
-                                             True                    175
+- chip_tf：genetically_modified==Falseならontology_curie x transcription_factorで一つに決まる（SEやPEがあるが、両方はない）。genetically_modifiedは色んな種類があり、name列で見分ける？
+Assay title  data_source  endedness  genetically_modified  strand
+TF ChIP-seq  encode       single     False                 .       595
+                                     True                          559
+                          paired     False                         288
+                                     True                          175
 
 - splice_sites：
 name      strand
