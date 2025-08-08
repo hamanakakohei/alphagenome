@@ -18,6 +18,7 @@ chip_histone
 splice_sites
 splice_site_usage
 splice_junctions
+contact maps
 出来れば実験データをダウンロードして並べて示す
 
 各モダリティのデータ（トラック）が、細胞種（ontology_curie列）で一意に決まるか？
