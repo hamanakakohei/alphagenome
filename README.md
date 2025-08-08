@@ -101,4 +101,13 @@ splice_junctions
 
 - splice_junctions：なぜかAssay titleが設定されていない、代わりにnameを見ないといけない。367データあるが、恐らく上のencode total: 195; encode polyA+: 118; gtex: 54だろう。
 
+- contact maps：一つのontology_curieに多くのデータあり
+
+| Assay title   | strand | data\_source | count |
+| ------------- | ------ | ------------ | ----- |
+| in situ Hi-C  | .      | 4dnucleome   | 24    |
+| Micro-C       | .      | 4dnucleome   | 3     |
+| Dilution Hi-C | .      | 4dnucleome   | 1     |
+
+
 - procap：6 ontology_curie x 2 strand = 12データのみ
