@@ -1,4 +1,8 @@
 # alphagenome
+
+メタデータ
+- https://www.alphagenomedocs.com/colabs/tissue_ontology_mapping.html
+
 To do:
 - 1 snp x 全データ（全細胞 x 全モダリティ）を表で保存する
 - VCF x 全データ（全細胞 x 全モダリティ）を
