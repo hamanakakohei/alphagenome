@@ -10,8 +10,10 @@ bcftools view \
   > logs/0.txt 2>&1
 ```
 
+
 スコアリング（01.py）の注意点
 - 参照：https://www.alphagenomedocs.com/variant_scoring.html
+
 
 図示（03.R）の注意点
 - quantile_scoreはlog10(1 - quantile_score)したうえで、元の正負に合わせている
