@@ -1,6 +1,6 @@
 # alphagenome
 
-メタデータ
+track_metadata.txtはこちらを参照：
 - https://www.alphagenomedocs.com/colabs/tissue_ontology_mapping.html
 
 To do:
