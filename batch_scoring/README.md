@@ -12,6 +12,7 @@ bcftools view \
 
 
 スコアリング（01.py）の注意点
+- variant_scorersがREFとALTの予測結果の比を出す
 - 参照：https://www.alphagenomedocs.com/variant_scoring.html
 
 
