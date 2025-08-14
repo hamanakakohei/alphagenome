@@ -1,6 +1,7 @@
 #!/usr/bin/env Rscript
 
 # To do:
+# - 元になった実験データをダウンロードして、並べて可視化する
 # - （可能なら）ドットの色を、値の正負で分ける
 
 suppressPackageStartupMessages({
