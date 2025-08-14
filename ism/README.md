@@ -1,6 +1,6 @@
 # ism
 
-ISM（01.py）の注意点
+In-silico mutagenesis（01.py）の注意点
 - variant_scorersがデフォルトではREFとALTの予測結果の比を出すので、差が欲しければ--aggregation_typeを変える
 - 参照：https://www.alphagenomedocs.com/variant_scoring.html
 
