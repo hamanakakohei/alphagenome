@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 # 以下をコピペしただけ：
 # https://www.alphagenomedocs.com/colabs/batch_variant_scoring.html
-# 
 # 元はgoogle colab用のスクリプトなので、ローカル用に適宜コメントアウト、追加している
+
+# To do:
+# - variant_scorersがREFとALTの比を出すので、
+#   ノイズみたいなpredictionでも変化すると優先順位が高くなる
+#   --> DIFF_MEANやDIFF_SUMをオプションで選べるようにする
+
 
 import sys
 from pathlib import Path
@@ -167,7 +172,7 @@ for i, vcf_row in tqdm(vcf.iterrows(), total=len(vcf)):
   )
   results.append(variant_scores)
 
-df_scores = variant_scorers.tidy_scores(results)
+df_scores = variant_scorers.tidy_scores(results) # デフォルトでmatch_gene_strand = True
 
 #if download_predictions:
 #  df_scores.to_csv('variant_scores.csv', index=False)

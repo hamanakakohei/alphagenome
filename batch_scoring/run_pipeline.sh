@@ -1,41 +1,52 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+export ALPHAGENOME_API_KEY=""
+
 source ~/miniconda3/etc/profile.d/conda.sh
-export ALPHAGENOME_API_KEY="your_api_key"
+conda activate alphagenome
 
+VCF=data/aaa.vcf.gz
 
-VCF=data/variants.vcf
-
-AG_SCORE=results/01/scores.txt
+SCORES=results/01/scores.txt
+CURIES=data/ontology_curies.txt
+SCORES_OF_CURIES=results/02/scores.curies.txt
 
 GENCODE_GTF=data/gencode.v47.primary_assembly.annotation.gtf
 GENCODE_RDS=data/gencode.v47.primary_assembly.annotation.rds
-SCORE_TYPE=raw_score # quantile_score
+SCORE_TYPE=raw_score
+#SCORE_TYPE=quantile_score
 PLOT_CHR=chr1
-PLOT_STA=1000
-PLOT_END=100000
-PLOT_OUT=results/02/out.${PLOT_CHR}.${PLOT_STA}.${PLOT_END}.${SCORE_TYPE}.png
+PLOT_STA=1000 
+PLOT_END=2000
+PLOT_OUT=results/03/out.${PLOT_CHR}.${PLOT_STA}.${PLOT_END}.${SCORE_TYPE}.png
+
+mkdir -p logs
 
 
-# 1
-conda activate alphagenome
+# 1：VCFを与えてスコアを計算する
 mkdir -p results/01
 
 scripts/01.py \
-  --vcf_file $VCF \
-  --out $AG_SCORE \
+  --vcf_file VCF \
+  --out $SCORES \
   > logs/1.txt 2>&1
 
-awk -F"\t" 'NR==1 || $15=="CL:0000312" || $15=="CL:1001606" || $15=="CL:2000092"' results/01/scores.txt > results/01/scores.some_cells.txt
+
+# 2：スコアを興味のある細胞種に絞る
+awk -F"\t" '
+  NR==1 { print; next }       
+  FNR==NR { curie[$1]; next } 
+  $15 in curie                
+  ' $CURIES $SCORES > $SCORES_OF_CURIES
 
 
-# 2
+# 3：図示する
 conda activate gviz
-mkdir -p results/02
+mkdir -p results/03
 
-scripts/02.R \
-  --input results/01/scores.some_cells.txt \
+scripts/03.R \
+  --input $SCORES_OF_CURIES \
   --gtf $GENCODE_GTF \
   --txdb_db $GENCODE_RDS \
   --chr $PLOT_CHR \
@@ -43,5 +54,4 @@ scripts/02.R \
   --end $PLOT_END \
   --score_type $SCORE_TYPE \
   --output $PLOT_OUT \
-  > logs/2.txt 2>&1
-  #--input $AG_SCORE \
+  > logs/3.txt 2>&1

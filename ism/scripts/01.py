@@ -55,7 +55,7 @@ def main():
     parser.add_argument("--context_width", type=str, choices=["2KB", "16KB", "100KB", "500KB", "1MB"], required=True)
     parser.add_argument("--modality", type=str, choices=variant_scorers.RECOMMENDED_VARIANT_SCORERS.keys(), required=True)
     parser.add_argument("--scorer_class", type=str, help="例: CenterMaskScorer")
-    parser.add_argument("--aggregation_type", type=str, help="例: DIFF_LOG2_SUM, DIFF_MEAN")
+    parser.add_argument("--aggregation_type", type=str, help="デフォルトではREFとALTの比だが、DIFF_SUMやDIFF_MEANを指定すると差になる")
     parser.add_argument("--width", type=int, help="variant_scorerのスコアリング幅")
     parser.add_argument("--out", type=Path, default=Path("results/01/out.pkl"))
 

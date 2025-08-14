@@ -4,10 +4,13 @@ Plot ISM results for a specific ontology CURIE.
 参考: https://colab.research.google.com/github/google-deepmind/alphagenome/blob/main/colabs/quick_start.ipynb
 """
 
+# To do:
+# - Y軸のタイトルを改行する、visualize_profiles/scriptを参考にできる
 
 # --- 描画パラメーター定義 ---
 TITLE = ''
-FIG_WIDTH = 35
+FIG_WIDTH = 12
+FIG_HEIGHT_SCALE = 3.0
 
 
 # --- モジュール読み込み ---
@@ -128,13 +131,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-#def extract_one_experiment(adata, **filters):
-#    mask = np.ones(len(adata.var), dtype=bool)
-#    for col, val in filters.items():
-#        if val is not None:
-#            mask &= (adata.var[col] == val)
-#
-#    values = adata.X[:, mask]
-#    assert values.size == 1, f"Unexpected match count for filters: {filters}"
-#    return values.flatten()[0]
