@@ -17,14 +17,12 @@ To do
 
 This project is based on code from 
 [google-deepmind/alphagenome](https://github.com/google-deepmind/alphagenome), 
-licensed under the Apache License, Version 2.0. You may obtain a copy of the license at:
-
-https://www.apache.org/licenses/LICENSE-2.0
-
+licensed under the Apache License, Version 2.0. You may obtain a copy of the license at: https://www.apache.org/licenses/LICENSE-2.0
 Some examples and documentation are adapted from the original repository and are licensed 
 under the Creative Commons Attribution 4.0 International License (CC-BY 4.0).
 
 ### Modifications
+
 This repository includes modifications compared to the original alphagenome code:
 - Added support for XYZ data format
 - Changed the training loop
