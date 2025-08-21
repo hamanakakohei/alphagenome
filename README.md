@@ -20,6 +20,7 @@ This project is based on code from
 licensed under the Apache License, Version 2.0. You may obtain a copy of the license at: https://www.apache.org/licenses/LICENSE-2.0
 Some examples and documentation are adapted from the original repository and are licensed 
 under the Creative Commons Attribution 4.0 International License (CC-BY 4.0).
+This repository contains modifications compared to the original alphagenome code.
 
 ### Modifications
 
