@@ -15,20 +15,10 @@ To do
 
 ## License and Disclaimer
 
-This project is based on code from 
-[google-deepmind/alphagenome](https://github.com/google-deepmind/alphagenome), 
-licensed under the Apache License, Version 2.0. You may obtain a copy of the license at: https://www.apache.org/licenses/LICENSE-2.0
-Some examples and documentation are adapted from the original repository and are licensed 
-under the Creative Commons Attribution 4.0 International License (CC-BY 4.0).
-This repository contains modifications compared to the original alphagenome code.
+This project uses code from [google-deepmind/alphagenome](https://github.com/google-deepmind/alphagenome), 
+licensed under the Apache License, Version 2.0. You may obtain a copy of the license at:
 
-### Modifications
-
-This repository includes modifications compared to the original alphagenome code:
-- Added support for XYZ data format
-- Changed the training loop
-- Simplified the configuration system
+https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, this project is distributed 
-on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND.
-
+on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
