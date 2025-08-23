@@ -1,5 +1,15 @@
 # ism
 
+ismのロゴ絵のY軸がどう計算されているか、わかりやすい説明がない気がするが、
+https://www.alphagenomedocs.com/api/generated/alphagenome.interpretation.ism.ism_matrix.html#alphagenome.interpretation.ism.ism_matrix
+にある通り、score[position, base] - mean(score[position, :])になる。
+つまり、ある塩基について3種類のaltアレルのraw scoreを3で割ってマイナスにした値になる。
+raw scoreは自分で選んだaggregation function次第。
+また、ismパイプラインで計算したスコアは、予測に使うインターバルの中心の変異のみ、batch_scoringパイプラインで計算したスコアと一致する。
+周辺の変異はスコアが微妙に異なる。
+これは、ismパイプラインでは、予測に使うインターバルは固定されており、変異毎にそれを中心としたインターバルを使わないせいだと思う。
+
+
 In-silico mutagenesis（01.py）の注意点
 - variant_scorersがデフォルトではREFとALTの予測結果の比を出すので、差が欲しければ--aggregation_typeを変える
 - 参照：https://www.alphagenomedocs.com/variant_scoring.html
