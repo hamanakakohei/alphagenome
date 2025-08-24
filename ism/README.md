@@ -3,7 +3,7 @@
 ismのロゴ絵のY軸がどう計算されているか、わかりやすい説明がない気がするが、
 https://www.alphagenomedocs.com/api/generated/alphagenome.interpretation.ism.ism_matrix.html#alphagenome.interpretation.ism.ism_matrix
 にある通り、score[position, base] - mean(score[position, :])になる。
-つまり、ある塩基について3種類のaltアレルのraw scoreを3で割ってマイナスにした値になる。
+つまり、ある塩基について3種類のaltアレルのraw scoreを3で割って、正負を逆にした値になる。
 raw scoreは自分で選んだaggregation function次第。
 また、ismパイプラインで計算したスコアは、予測に使うインターバルの中心の変異のみbatch_scoringパイプラインで計算したスコアと一致するが、
 周辺の変異はスコアが微妙に異なる。
