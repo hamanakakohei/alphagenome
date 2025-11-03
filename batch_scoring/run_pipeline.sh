@@ -39,7 +39,7 @@ conda activate misc
 scripts/02.py \
   -i $SCORES \
   -o $SCORES_FILT \
-  --filter gene_name SERPINB7 \
+  --filter gene_name DUX4 \
   --filter gene_strand + \
   --filter track_strand + \
   --filter ontology_curie CL:0000312 NaN \
