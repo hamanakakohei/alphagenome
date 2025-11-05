@@ -20,7 +20,9 @@ option_list <- list(
   make_option(c("--don_acc_max"), action="store_true", default=FALSE, help="SPLICE_SITESのdoc & accスコアの最大値を示す"),
   make_option(c("--chr"), type="character", default=NULL, help="プロット領域"),
   make_option(c("--start"), type="integer", default=NULL, help="プロット領域"),
-  make_option(c("--end"), type="integer", default=NULL, help="プロット領域")
+  make_option(c("--end"), type="integer", default=NULL, help="プロット領域"),
+  make_option(c("--width"), type="integer", default=3000),
+  make_option(c("--height"), type="integer", default=2000)
 )
 
 opt <- parse_args(OptionParser(option_list=option_list))
@@ -49,7 +51,6 @@ df <- df %>%
   )
 
 # SPLICE_SITESをaccとdonで最大値をとる
-print(df, width=Inf, n=Inf)
 if( opt$don_acc_max ){
   df <- df %>%
     # SPLICE_SITES とそれ以外に分ける
@@ -79,7 +80,6 @@ if( opt$don_acc_max ){
     }) %>%
     bind_rows()
 }
-print(df, width=Inf, n=Inf)
 
 
 # プロット領域を決める、引数で指定するか、scoresファイルから自動で抜き出すか
@@ -173,7 +173,7 @@ for (sub in df %>% group_by(across(all_of(group_cols))) %>% group_split()) {
 
 # プロット
 #pdf(opt$output, width=12, height=5 + length(tracks)*0.3)
-png(opt$output, width=3000, height=2000 + length(tracks)*100, res=800)
+png(opt$output, width=opt$width, height=opt$height + length(tracks)*100, res=800)
 plotTracks(
   tracks,
   from=start,
