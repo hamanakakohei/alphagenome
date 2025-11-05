@@ -62,4 +62,6 @@ scripts/03.R \
   --end $PLOT_END \
   --score_type $SCORE_TYPE \
   --output $PLOT_OUT \
+  --width $W \
+  --height $H \
   > logs/3.${ANALYSIS}.txt 2>&1
