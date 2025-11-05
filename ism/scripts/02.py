@@ -7,11 +7,6 @@ Plot ISM results for a specific ontology CURIE.
 # To do:
 # - Y軸のタイトルを改行する、visualize_profiles/scriptを参考にできる
 
-# --- 描画パラメーター定義 ---
-TITLE = ''
-FIG_WIDTH = 12
-FIG_HEIGHT_SCALE = 3.0
-
 
 # --- モジュール読み込み ---
 import argparse
@@ -50,17 +45,20 @@ def extract_one_experiment(adata, filters_var=None, filters_obs=None):
 
     # 両方のフィルターを適用
     values = adata.X[np.ix_(mask_obs, mask_var)]
-    print( adata.var[mask_var].iloc[0] )
-    print( adata.obs[mask_obs].iloc[0] )
+    #print( adata.var[mask_var].iloc[0] )
+    #print( adata.obs[mask_obs].iloc[0] )
     assert values.size == 1, f"Unexpected match count for filters: var={filters_var}, obs={filters_obs}"
     return values.flatten()[0]
 
 
 def main():
-    # --- 引数パーサー設定 ---
-    parser = argparse.ArgumentParser(description="Plot ISM results")
-    parser.add_argument("--ism_result", type=Path, default=Path("results/01/out.pkl"))
-    parser.add_argument("--out", type=Path)
+    parser = argparse.ArgumentParser(description="01のISM結果を指定した条件でフィルターしつつ、base毎プロットを描きつつ、置換毎heatmap用の表を保存する")
+    parser.add_argument("--in_ism_res", type=Path, default=Path("results/01/out.pkl"))
+    parser.add_argument("--out_plot", type=Path)
+    parser.add_argument("--out_ism_heatmap_mat", type=Path, help="バリアントごとのスコア表の出力先pkl")
+    parser.add_argument("--title", type=str, default="")
+    parser.add_argument("--width", type=int, default=20)
+    parser.add_argument("--height_scale", type=float, default=1.0)
 
     # ISM結果をフィルタするための引数（一部のみ指定すれば良い）
     filter_cols = [
@@ -88,27 +86,31 @@ def main():
 
     args = parser.parse_args()
 
-    # 出力ファイルパスの設定
-    if args.out is None:
-        args.out = Path(f"results/02/{args.ism_result.stem}.{args.ontology_curie}.png")
 
     # --- ISM結果の読み込み ---
-    with open(args.ism_result, "rb") as f:
+    with open(args.in_ism_res, "rb") as f:
         d = pickle.load(f)
         variant_scores = d["variant_scores"]
         ism_interval = d["ism_interval"]
         modality = d["modality"]
 
-    # --- ISM結果を一つのTrack結果に絞る ---
+    
+    # --- ISM結果を一つのTrack結果に絞りプロット用にbase毎スコア表にする ---
     filters_var = {col: getattr(args, col) for col in filter_cols}
     filters_obs = {col: getattr(args, col) for col in filter_rows}
 
-    ism_result = ism.ism_matrix(
-        [ extract_one_experiment(x[0], filters_var, filters_obs) for x in variant_scores ],
-        variants = [ v[0].uns['variant'] for v in variant_scores ],
-    )
+    ism_detail = [ extract_one_experiment(x[0], filters_var, filters_obs) for x in variant_scores ]
+    variants = [ v[0].uns['variant'] for v in variant_scores ]
 
-    logging.info(f"ISM plot data shape: {ism_result.shape}")
+    ism_result = ism.ism_matrix(
+        ism_detail,
+        variants = variants,
+    )
+    
+    # ついでにISM結果をヒートマップ用に置換毎スコア表にして保存する
+    with open(args.out_ism_heatmap_mat, "wb") as f:
+        pickle.dump({"ism_detail":ism_detail, "variants":variants}, f)    
+
 
     # --- プロット ---
     plot = plot_components.plot(
@@ -120,12 +122,13 @@ def main():
             )
         ],
         interval = ism_interval,
-        title = TITLE,
-        fig_width = FIG_WIDTH,
+        title = args.title,
+        fig_width = args.width,
+        fig_height_scale = args.height_scale,
     )
 
-    args.out.parent.mkdir(parents=True, exist_ok=True)
-    plot.figure.savefig(args.out, dpi=300, bbox_inches='tight')
+    args.out_plot.parent.mkdir(parents=True, exist_ok=True)
+    plot.figure.savefig(args.out_plot, dpi=300, bbox_inches='tight')
 
 
 if __name__ == "__main__":
