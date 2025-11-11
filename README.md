@@ -1,12 +1,12 @@
 # alphagenome
 
 ## 使い方
-`~/.bash_profile`に以下のように環境変数を加える
+`~/.bash_profile`に以下のように環境変数を加える：
 ```bash
 export ALPHAGENOME_API_KEY="you_api_key"
 ```
 
-alphagenome仮想環境を作る
+alphagenome仮想環境を作る：
 ```bash
 mamba create -n alphagenome python=3.11 matplotlib numpy pandas seaborn pillow
 conda activate alphagenome
