@@ -1,22 +1,22 @@
 # alphagenome
 
 ## 使い方
-`~/.bash_profile`に以下のように環境変数を加える：
+1. 環境変数を`~/.bash_profile`に加える：
 ```bash
 export ALPHAGENOME_API_KEY="you_api_key"
 ```
 
-alphagenome仮想環境を作る：
+2. alphagenome仮想環境を作る：
 ```bash
 mamba create -n alphagenome python=3.11 matplotlib numpy pandas seaborn pillow
 conda activate alphagenome
 pip install -U alphagenome
 ```
 
-gviz仮想環境はこう：
+3. gviz仮想環境はこう：
 - https://github.com/hamanakakohei/gviz
 
-utilsリポを`~/github/`以下に置く：
+4. utilsリポを`~/github/`以下に置く：
 ```bash
 mkdir -p ~/github
 git clone https://github.com/hamanakakohei/utils/ ~/github/utils
