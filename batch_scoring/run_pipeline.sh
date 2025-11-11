@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-source ~/miniconda3/etc/profile.d/conda.sh
+eval "$(conda shell.bash hook)"
 source ~/.bash_profile
 
 
