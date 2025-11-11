@@ -6,12 +6,14 @@
 export ALPHAGENOME_API_KEY="you_api_key"
 ```
 
-仮想環境を作る
+alphagenome仮想環境を作る
 ```bash
 mamba create -n alphagenome python=3.11 matplotlib numpy pandas seaborn pillow
 conda activate alphagenome
 pip install -U alphagenome
 ```
+gviz仮想環境はこう：https://github.com/hamanakakohei/gviz
+
 ---
 track_metadata.txt
 - alphagenomeで予測できる実験データの一覧
