@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-source ~/miniconda3/etc/profile.d/conda.sh
+eval "$(conda shell.bash hook)"
+source ~/.bash_profile
 conda activate alphagenome
-
-export ALPHAGENOME_API_KEY=""
 
 
 VARIANT="chr1:1000:G>T"
