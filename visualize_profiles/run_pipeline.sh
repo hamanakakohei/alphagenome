@@ -2,7 +2,6 @@
 set -euo pipefail
 
 eval "$(conda shell.bash hook)"
-source ~/.bash_profile
 conda activate alphagenome
 
 
