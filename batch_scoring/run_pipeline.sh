@@ -2,11 +2,10 @@
 set -euo pipefail
 
 eval "$(conda shell.bash hook)"
-source ~/.bash_profile
+conda activate alphagenome
 
 
 ANALYSIS=aaa
-
 VCF=data/aaa.vcf
 
 SCORES=results/01/scores.${ANALYSIS}.txt
@@ -22,12 +21,10 @@ PLOT_END=2000
 PLOT_OUT=results/03/out.${ANALYSIS}.${PLOT_CHR}.${PLOT_STA}.${PLOT_END}.${SCORE_TYPE}.png
 
 mkdir -p logs
+mkdir -p results/01 results/02 results/03
 
 
 # 1：VCFを与えてスコアを計算する
-conda activate alphagenome
-mkdir -p results/01
-
 scripts/01.py \
   --vcf_file $VCF \
   --out $SCORES \
@@ -35,7 +32,6 @@ scripts/01.py \
 
 
 # 2：スコアを興味のある細胞種に絞る
-conda activate misc
 scripts/02.py \
   -i $SCORES \
   -o $SCORES_FILT \
@@ -50,7 +46,6 @@ scripts/02.py \
 
 # 3：図示する
 conda activate gviz
-mkdir -p results/03
 
 scripts/03.R \
   --input $SCORES_FILT \
