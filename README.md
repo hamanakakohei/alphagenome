@@ -1,7 +1,7 @@
 # alphagenome
 
-使い方
-  `~/.bash_profile`に以下のように環境変数を加える
+## 使い方
+`~/.bash_profile`に以下のように環境変数を加える
 ```bash
 export ALPHAGENOME_API_KEY="you_api_key"
 ```
@@ -20,11 +20,11 @@ track_metadata.txt
 - これと同じもの：
   https://www.alphagenomedocs.com/colabs/tissue_ontology_mapping.html
 ---
-To do
+## To do
 - ハプロタイプで解析できるようにする
  （Y軸にRef/Altハプロタイプのスコアを水平ダッシュ線で参照として示しつつ、各バリアントの影響を示す）
 ---
-注意点
+## 注意点
 - cage：ontology_curieにによってはLQhCAGEとhCAGEの両方ある
 - splice_junctions：なぜかAssay titleが設定されていない、代わりにnameを見ないといけない。
 
