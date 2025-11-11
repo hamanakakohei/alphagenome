@@ -15,6 +15,12 @@ pip install -U alphagenome
 
 gviz仮想環境はこう：https://github.com/hamanakakohei/gviz
 
+`~/github/`以下にutilsリポを置く：
+```bash
+mkdir -p ~/github
+git clone https://github.com/hamanakakohei/utils/ ~/github/utils
+```
+
 track_metadata.txt
 - alphagenomeで予測できる実験データの一覧
 - これと同じもの：
