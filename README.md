@@ -13,7 +13,7 @@ conda activate alphagenome
 pip install -U alphagenome
 ```
 
-3. gviz仮想環境はこう：
+3. gviz仮想環境はこう（「batch_scoring」の03.R用）：
 - https://github.com/hamanakakohei/gviz
 
 4. utilsリポを`~/github/`以下に置く：
